@@ -1,0 +1,185 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  _______  _______  __  _______   ______
+% |       ||       ||  ||       | |      |
+% |       ||  _____||  ||____   | |   |  |
+% |       || |_____ |  |    |   | |   |  |
+% |      _||_____  ||  |    |   | |   |  |
+% |     |_  _____| ||  |    |   | |      |
+% |_______||_______||__|    |___| |______|
+%
+% Header and Style File for CS170 TeX Files
+%
+% This package contains references to other packages, new commands, and values
+% for different parameters, common to all documents.
+% This file should be placed one level above the TeX files in the directory
+% tree.
+%
+% Please modify the appropriate section below with information about
+% the class: this information needs to be updated only once per semester.
+%
+% Compiled by Aditya Baradwaj (abaradwaj@berkeley.edu),
+% with significant inspiration taken from CS 70's header.sty file,
+% which was compiled and cleaned by Alvin Wan (http://alvinwan.com)
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\ProvidesPackage{cs170}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Course Information
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% MODIFY THIS INFORMATION AS NECESSARY
+
+\def\coursenumber{CS 170}
+\def\class{Efficient Algorithms and Intractable Problems}
+\def\semester{Fall 2019}
+\def\instructor{P. Raghavendra \& S. Rao}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages Needed
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{cancel}
+\usepackage{caption}
+\usepackage{circuitikz}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{enumerate}
+\usepackage{epsf}
+\usepackage{fancyhdr}
+\usepackage{forest}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{import}
+\usepackage{latexsym}
+\usepackage{listings}
+\usepackage{mathtools}
+\usepackage{paralist}
+\usepackage{tabu}
+\usepackage{textcomp}
+\usepackage{tikz}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage[all]{xy}
+\usetikzlibrary{automata, arrows, positioning, shapes}
+
+% Added while refactoring for 170:
+% \usepackage[noend,noline]{algorithm2e}
+\usepackage{multicol}
+\usepackage[margin=1.2in]{geometry}
+
+
+%\usepackage{algorithmicx} % Algorithms
+% \usepackage[]{algorithm2e}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode} % Algorithms
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header and Title
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{fancy}
+\usepackage{color}
+\setlength{\headheight}{20pt}
+\setlength{\headsep}{10pt}
+\fancyhead[L]{\small{\coursenumber, \semester}}
+\fancyhead[C]{\small{\title}}
+\fancyhead[R]{\small{\instructor}}
+\fancyfoot[C]{\small{$\thepage$}}
+
+% The \title command gets defined in the .erb template file
+\def\maketitle{
+    \section*{CS 170 \title}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Other
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Commands for questions, parts, and solutions
+\newcommand{\question}[1]{\section{#1}}
+\newenvironment{subparts}{\begin{enumerate}[(a)]
+\newcommand\subpart{\item}}{\end{enumerate}}
+\newenvironment{solution}{\color{blue} \smallskip \textbf{Solution:}}{}
+\newcount\starcounter
+\newcommand{\stars}[1]{%
+	(%
+	\starcounter0
+	\loop\ifnum\starcounter < #1
+	$\bigstar$%
+	\advance\starcounter by 1
+	\repeat
+	)
+}
+
+% Theorem environments
+\newtheorem{claim*}{Claim}
+
+% Other math commands
+
+%%%%%% bold font in math mode; this sucks but is simplest for now
+\newcommand{\mbf}[1]{\mbox{{\bfseries #1}}}
+\newcommand{\smbf}[1]{\mbox{{\scriptsize\bfseries #1}}}
+
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\msf}[1]{\mathsf{#1}}
+
+\def\C{\mathbb{C}}
+\def\N{\mathbb{N}}
+\def\R{\mathbb{R}}
+\def\X{\mbf{X}}
+\def\x{\mbf{x}}
+\def\sx{\smbf{x}}
+\def\Y{\mbf{Y}}
+\def\y{\mbf{y}}
+\def\sy{\smbf{y}}
+\def\e{\mathrm{e}}
+\def\T{\mbf{T}}
+\def\O{\textrm{O}}  % repeated below because it gets redefined by some package?
+\def\Q{\mathbb{Q}}
+\def\se{\smbf{e}}
+\def\Z{\mathbb{Z}}
+\def\z{\mbf{z}}
+\def\sz{\smbf{z}}
+\def\F{\mathbb{F}}
+\def\f{\mbf{f}}
+\def\A{\mbf{A}}
+\def\B{\mbf{B}}
+\def\b{\mbf{b}}
+% Used in, e.g. \int_0^1 x \, \D x.
+\def\D{\mathrm{d}}
+\def\m{\mbf{m}}
+\def\I{\mbf{I}}
+\def\ones{\mbf{1}}
+\def\ev{\mbf{ev}}
+\def\fv{\mbf{ev}}
+\def\sv{\mbf{sv}}
+\def\e{\mathop{\mathrm{e}}\nolimits}  % for e = 2.718...
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Additional commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Feel free to add commands here
+
+\def\defeq{\mathrel{\mathop:}=}
+\def\ceil#1{\lceil #1 \rceil}
+\def\ceiling#1{\lceil #1 \rceil}
+\def\floor#1{\lfloor #1 \rfloor}
+\def\qed{$\Box$}

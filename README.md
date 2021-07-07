@@ -4,6 +4,7 @@ This repo contains all the learning materials for UC Berkeley's course [CS170 : 
 
 ## Course Map
 
+- Algorithm of Numbers
 - Divide and Conquer
 - Graph algorithms : shortest-path, MST, graph decomposition
 - Greedy algorithm
